@@ -1,4 +1,4 @@
-WITH tilebounds (geom) AS (SELECT ST_MakeEnvelope($1, $2, $3, $4, 3857)),
+WITH tilebounds (geom) AS (SELECT ST_TileEnvelope($1, $2, $3)),
 query AS (
   $query
 )

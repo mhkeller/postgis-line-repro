@@ -1,12 +1,8 @@
 const express = require("express");
-const SphericalMercator = require("@mapbox/sphericalmercator");
 const { join } = require("path");
 const { readFileSync } = require("fs");
 const pg = require('pg');
 const router = express.Router();
-const mercator = new SphericalMercator({
-  size: 256,
-});
 const dotenv = require('dotenv');
 
 dotenv.config();
@@ -34,15 +30,12 @@ router.get("/:z/:x/:y.mvt", async (req, res) => {
 
   const { z, x, y } = params;
 
-  // calculate the bounding box for this tile
-  const bbox = mercator.bbox(x, y, z, false, "900913");
-
   try {
     const q = generateVectorTile.replace("$query", 'SELECT ST_Makeline(geom ORDER BY field_order) as geom FROM path_test');
 
     const {
       rows: [tile],
-    } = await pool.query(q, bbox);
+    } = await pool.query(q, [z, x, y]);
 
     res.setHeader("Content-Type", "application/x-protobuf");
 
