@@ -60,10 +60,11 @@ Versus what it actually does (disregard line style)
 
 ### Steps to reproduce
 
-0. Add your own basemap layer in `index.html`
-1. Create the table and load data with `node create-table.js`
-2. Run the tile server with `npm run tile-server`
-3. Run the web server with `npm run web-server`
+1. Rename [`.env.sample`](./.env.sample) to `.env` and add your postgres connection credentials
+2. Add your own basemap layer in `index.html`
+3. Create the table and load data with `node create-table.js`
+4. Run the tile server with `npm run tile-server`
+5. Run the web server with `npm run web-server`
 
 Navigate to `http://127.0.0.1:8080`
 
