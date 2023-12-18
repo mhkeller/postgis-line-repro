@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "tile-server": "node server.js",
-    "web-server": "hs"
+    "web-server": "http-server"
   },
   "keywords": [],
   "author": "",
